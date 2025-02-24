@@ -1,0 +1,11 @@
+24-02-2025 (25-02-2025 1:00)
+
+completed the backend for :
+	1. login and registration of STUDENT, STAFF & ADMIN.
+	2. reporting a complaint.
+	3. report log visible on student and admin site, bug at staff's.	
+
+NOTE: 
+	a. its "TEMPLATES" not TEMPLATE.
+	b. name files correctly.
+	c. to debug use test.html (return HttpResponse).

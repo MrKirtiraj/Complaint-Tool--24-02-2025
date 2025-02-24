@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">Dashboard</h2>
+    {% if user_role == 'student' %}
+        <h3>Your Complaints</h3>
+        <a href="{% url 'file_complaint' %}" class="btn btn-primary mb-3">File a Complaint</a>
+    {% elif user_role == 'staff' %}
+        <h3>Assigned Complaints</h3>
+    {% elif user_role == 'admin' %}
+        <h3>All Complaints</h3>
+    {% endif %}
+
+    {% if complaints %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in complaints %}
+                    <tr>
+                        <td>{{ complaint.title }}</td>
+                        <td>{{ complaint.category }}</td>
+                        <td>{{ complaint.priority }}</td>
+                        <td>{{ complaint.status }}</td>
+                        <td>{{ complaint.created_at }}</td>
+                        <td>
+                            <a href="{% url 'complaint_details' complaint.id %}" class="btn btn-info btn-sm">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            No complaints found.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
